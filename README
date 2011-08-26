@@ -42,6 +42,7 @@ Markup:
 Audio Engine:
    1.  OSSv4                   Sound System
    2.  OpenAL-Soft             2D/3D Audio Library
+   3.  Jack                    Sound Server
 
 Database:
    1.  Sqlite                  Embeded SQL Database
