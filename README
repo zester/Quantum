@@ -21,15 +21,14 @@ Librarys Used:
    2.  V8                      JavaScript Engine
    3.  Skia                    2D Graphics Engine  (Raster & Vector)
    4.  OpenGL                  3D Graphics
-   5.  Magick++                2D Graphics Utility (Raster & Vector)
-   6.  Bullet                  3D Physics
-   7.  Box2D                   2D Physics
-   8.  Libjson                 JSON Parser
-   9.  Yaml-Cpp                YAML Parser
-   10. Xerces-C                XML SAX & DOM Parser
-   11. XQilla                  XQuery and XPath2 Parser
-   12. OSSv4                   Sound System
-   13. OpenAL-Soft             2D/3D Audio
+   5.  Bullet                  3D Physics
+   6.  Box2D                   2D Physics
+   7.  Libjson                 JSON Parser
+   8.  Yaml-Cpp                YAML Parser
+   9.  Xerces-C                XML SAX & DOM Parser
+   10. XQilla                  XQuery and XPath2 Parser
+   11. OSSv4                   Sound System
+   12. OpenAL-Soft             2D/3D Audio
    13. Sqlite                  Embeded SQL Database
    14. PostgreSQL              SQL Database Server
    15. ...
