@@ -16,22 +16,37 @@ Tools Used:
    1.  Clang, Clang++, LLVM    C, C++ Compiler Suite
    2.  ...
 
-Librarys Used:
-   1.  Boost & Bionic          C, C++ Standard Librarys
-   2.  V8                      JavaScript Engine
-   3.  Skia                    2D Graphics Engine  (Raster & Vector)
-   4.  OpenGL                  3D Graphics (Nvidia, Ati, PowerVR, Mesa)
-   5.  Bullet                  3D Physics
-   6.  Box2D                   2D Physics
-   7.  Libjson                 JSON Parser
-   8.  Yaml-Cpp                YAML Parser
-   9.  Xerces-C                XML SAX & DOM Parser
-   10. XQilla                  XQuery and XPath2 Parser
-   11. OSSv4                   Sound System
-   12. OpenAL-Soft             2D/3D Audio
-   13. Sqlite                  Embeded SQL Database
-   14. PostgreSQL              SQL Database Server
-   15. ...
+Core Librarys:
+   1.  Bionic                  Standard C Library
+   2.  Libc++                  Standard C++ Library
+   3.  Boost                   C++ Extension Librarys
+
+Graphics Engines:
+   1.  Skia                    2D Graphics Engine 
+   2.  SFML                    2D/3D Multimedia Library "Grpahics, Images, Font, Audio, Input, Network, Shaders, ..."
+   3.  Horde3D                 3D Graphics
+
+Physics Engines:
+   1.  Bullet                  3D Physics
+   2.  Box2D                   2D Physics
+
+Scripting Engine:
+   1.  V8                      JavaScript Engine
+
+Markup:
+   1.  Libjson                 JSON Parser
+   2.  Yaml-Cpp                YAML Parser
+   3.  Xerces-C                XML SAX & DOM Parser
+   4.  XQilla                  XQuery and XPath2 Parser
+
+Audio Engine:
+   1.  OSSv4                   Sound System
+   2.  OpenAL-Soft             2D/3D Audio Library
+
+Database:
+   1.  Sqlite                  Embeded SQL Database
+   2.  PostgreSQL              SQL Database Server
+
 
 
 
