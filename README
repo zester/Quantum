@@ -19,9 +19,9 @@ Tools Used:
 Librarys Used:
    1.  Boost & Bionic          C, C++ Standard Librarys
    2.  V8                      JavaScript Engine
-   3.  Cairo or Skia           2D Graphics
+   3.  Skia                    2D Graphics Engine  (Raster & Vector)
    4.  OpenGL                  3D Graphics
-   5.  Magick++                2D Graphics Utility
+   5.  Magick++                2D Graphics Utility (Raster & Vector)
    6.  Bullet                  3D Physics
    7.  Box2D                   2D Physics
    8.  Libjson                 JSON Parser
