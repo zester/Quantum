@@ -20,7 +20,7 @@ Librarys Used:
    1.  Boost & Bionic          C, C++ Standard Librarys
    2.  V8                      JavaScript Engine
    3.  Skia                    2D Graphics Engine  (Raster & Vector)
-   4.  OpenGL                  3D Graphics
+   4.  OpenGL                  3D Graphics (Nvidia, Ati, PowerVR, Mesa)
    5.  Bullet                  3D Physics
    6.  Box2D                   2D Physics
    7.  Libjson                 JSON Parser
@@ -33,7 +33,11 @@ Librarys Used:
    14. PostgreSQL              SQL Database Server
    15. ...
 
-
+Operating System Support:
+   1.  Linux
+   2.  FreeBSD
+   3.  Mac
+   4.  Windows
 
 
 
