@@ -37,7 +37,7 @@ Markup:
    1.  Libjson                 JSON Parser
    2.  Yaml-Cpp                YAML Parser
    3.  Xerces-C                XML SAX & DOM Parser
-   4.  XQilla                  XQuery and XPath2 Parser
+   4.  XQilla                  XQuery, XPath2 & XSLT2 Parser
 
 Audio Engine:
    1.  OSSv4                   Sound System
