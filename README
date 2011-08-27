@@ -14,12 +14,10 @@ and 5 rules of engagement.
 
 Tools Used:
    1.  Clang, Clang++, LLVM    C, C++ Compiler Suite
-   2.  ...
+   2.  Bionic, Libc++, FreeBSD Libc
 
 Core Librarys:
-   1.  Bionic                  Standard C Library
-   2.  Libc++                  Standard C++ Library
-   3.  Boost                   C++ Extension Librarys
+   1.  Boost                   C++ Extension Librarys
 
 Graphics Engines:
    1.  Skia                    2D Graphics Engine 
