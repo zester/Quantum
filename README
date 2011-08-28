@@ -14,3 +14,16 @@ and 5 rules of engagement.
 
 
 Visit http://zester.github.com/Chipara/ for more info
+
+## 3rd-party libraries
+
+* libRocket (http://librocket.com), (https://github.com/lloydw/libRocket)
+ * That's what this is all about
+* v8 (http://code.google.com/p/v8/)
+ * The v8 Javascript engine
+* v8-juice (http://code.google.com/p/v8-juice/)
+ * Exposes C++ classes to v8
+* v8rocket (https://github.com/realazthat/v8.rocket)
+ * This project, exposes libRocket's DOM to v8
+* boost
+ * for boost::bind, otherwise be prepared to create function objects (or use std::bind)
