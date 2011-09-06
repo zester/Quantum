@@ -13,12 +13,14 @@ MainWindow::MainWindow(QWidget *parent) :
     setAttribute(Qt::WA_X11NetWmWindowTypeDesktop);
     resize(QApplication::desktop()->size());
 
+    windowSettings = new QSettings("chipara", "desktop");
+    windowSettings->beginGroup("window");
+    wallpaper.load(windowSettings->value("wallpaper").toString());
+    windowSettings->endGroup();
+
     //
     desktopView = new QDesktopViewWidget;
     setCentralWidget(desktopView);
-
-    //
-    wallpaper.load("/home/steven/Picture/Arch_Linux_Wallpaper_by_james66.jpg");
 
 }
 

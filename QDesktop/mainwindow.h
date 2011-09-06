@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSettings>
 #include "qdesktopview.h"
 
 namespace Ui {
@@ -24,6 +25,7 @@ private:
     Ui::MainWindow *ui;
     QDesktopViewWidget *desktopView;
     QPixmap wallpaper;
+    QSettings *windowSettings;
 };
 
 #endif // MAINWINDOW_H

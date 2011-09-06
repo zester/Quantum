@@ -17,6 +17,10 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     //
     setStyleSheet("QListView {background-color: transparent; color: white;}");
 
+    //desktopSettings = new QSettings("chipara", "desktop");
+    //desktopSettings->beginGroup("desktop");
+    //desktopSettings->endGroup();
+
     //
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setViewMode(QListView::IconMode);
@@ -107,6 +111,7 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
 
     //
     menu->addSeparator();
+
 
 
 
