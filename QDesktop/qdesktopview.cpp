@@ -41,6 +41,11 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     setAutoScroll(true);
     setResizeMode(QListView::Adjust);
 
+    //setDragEnabled(true);
+    //this->viewport()->setAcceptDrops(true);
+    //setDropIndicatorShown(true);
+    //setDragDropMode(QAbstractItemView::InternalMove);
+
     //
     QFreeDesktopMime mime;
 
@@ -77,18 +82,32 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
 
     // Right Click Desktop Menu
     menu = new QMenu(this);
-    menu->setStyleSheet("padding: 5px; width: 220px;");
-    menu->addAction(new QAction(QIcon::fromTheme("folder"), "Create Folder", this));
-    menu->addAction(new QAction(QIcon::fromTheme("folder"), "Create Launcher ...", this));
-    menu->addAction(new QAction(QIcon::fromTheme("file"),   "Create Document", this));
+    menu->setStyleSheet("padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;");
+
+    // Create New Folder
+    QAction *createFolder = new QAction(QIcon::fromTheme("folder"), tr("&Create Folder"), this);
+    createFolder->setCheckable(false);
+    menu->addAction(createFolder);
+    connect(createFolder, SIGNAL(triggered()), this, SLOT(createFolder()));
+
+    // Create Launcher
+    QAction *createLauncher = new QAction(QIcon::fromTheme("folder"), tr("&Create Launcher ..."), this);
+    createLauncher->setCheckable(false);
+    menu->addAction(createLauncher);
+    connect(createLauncher, SIGNAL(triggered()), this, SLOT(createLauncher()));
+
+    //
+    QMenu *createDocMenu = menu->addMenu(tr("&Create Document"));
+
+    // Create Launcher
+    QAction *createEmptyFile = new QAction(QIcon::fromTheme("folder"), tr("&Empty File"), this);
+    createEmptyFile->setCheckable(false);
+    createDocMenu->addAction(createEmptyFile);
+    connect(createEmptyFile, SIGNAL(triggered()), this, SLOT(createEmptyFile()));
+
+    //
     menu->addSeparator();
-    menu->addAction(new QAction(QIcon::fromTheme("file"),   "Organize Desktop by Name", this));
-    menu->addAction(new QAction(QIcon::fromTheme("file"),   "Keep Aligned", this));
-    menu->addSeparator();
-    menu->addAction(new QAction(QIcon::fromTheme("file"),   "Paste", this));
-    menu->addAction(new QAction(QIcon::fromTheme("file"),   "Select All", this));
-    menu->addSeparator();
-    menu->addAction(new QAction(QIcon::fromTheme("file"),   "Change Desktop Background", this));
+
 
 
     // Right Click Desktop Icon Menu
@@ -99,6 +118,27 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     // Desktop Icon Double Click Event
     connect(this, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(iconClicked(QListWidgetItem*)));
 
+}
+
+//
+void QDesktopViewWidget::createFolder()
+{
+
+    qDebug() << "Create Folder Action Triggered";
+}
+
+//
+void QDesktopViewWidget::createLauncher()
+{
+
+    qDebug() << "Create Launcher Action Triggered";
+}
+
+//
+void QDesktopViewWidget::createEmptyFile()
+{
+
+    qDebug() << "Create Empty File Action Triggered";
 }
 
 //

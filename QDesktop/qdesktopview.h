@@ -15,6 +15,9 @@ public:
 
 public slots:
     void iconClicked(QListWidgetItem*);
+    void createFolder();
+    void createLauncher();
+    void createEmptyFile();
 
 private:
     QPoint startPos;
@@ -23,7 +26,6 @@ private:
 
 signals:
 
-public slots:
 
 };
 
