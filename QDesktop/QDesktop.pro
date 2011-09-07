@@ -8,6 +8,9 @@ TARGET =
 DEPENDPATH += .
 INCLUDEPATH += .
 
+CONFIG += mobility
+MOBILITY += systeminfo
+
 # Input
 HEADERS += freedesktopmime.h mainwindow.h qdesktopview.h
 

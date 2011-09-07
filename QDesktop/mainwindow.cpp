@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent) :
     setAttribute(Qt::WA_X11NetWmWindowTypeDesktop);
     resize(QApplication::desktop()->size());
 
+    // Note: Needs to be moved to a class function of it's own
+    //
     windowSettings = new QSettings("chipara", "desktop");
     windowSettings->beginGroup("window");
     wallpaper.load(windowSettings->value("wallpaper").toString());
@@ -21,18 +23,17 @@ MainWindow::MainWindow(QWidget *parent) :
     //
     desktopView = new QDesktopViewWidget;
     setCentralWidget(desktopView);
-
 }
 
 //
-void MainWindow::resizeEvent(QResizeEvent *event) // Note: Function argument needs to be made void
+void MainWindow::resizeEvent(QResizeEvent *event) // Note: Function argument needs to be made void?
 {
     //
     wallpaper = wallpaper.scaled(QApplication::desktop()->size());
 }
 
 //
-void MainWindow::paintEvent(QPaintEvent *event) // Note: Function argument needs to be made void
+void MainWindow::paintEvent(QPaintEvent *event) // Note: Function argument needs to be made void?
 {
     //
     QPainter p(this);

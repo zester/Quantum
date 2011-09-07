@@ -7,6 +7,8 @@
 #include <QMenu>
 //#include <QSettings>
 
+
+
 class QDesktopViewWidget : public QListWidget
 {
     Q_OBJECT
@@ -24,7 +26,6 @@ private:
     QPoint startPos;
     QMenu *menu;
     QMenu *iconMenu;
-    //QSettings *desktopSettings;
 
 
 signals:

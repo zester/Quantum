@@ -11,17 +11,31 @@
 #include <QDesktopWidget>
 #include "freedesktopmime.h"
 
+
+// Note: the QDesktopViewWidget Class will become it's own widget
+// so others can easly create there own desktopsor file managers with
+// only a few lines of code
 QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     QListWidget(parent)
 {
-    //
+    // This sets the QDesktopViewWidget(QListWidget) to transparent so that the
+    // desktop wallpaper below it can be seen. Note: the color: white propertiy
+    // needs to be moved to the desktop config file
     setStyleSheet("QListView {background-color: transparent; color: white;}");
 
+    // Note: Need to check if config files exist, if it doesnt we need to
+    // create it.
+
+    // In the future the below QDesktopViewWidget settings will be wrapped
+    // in this block of code so every aspect of how the desktop looks and feels
+    // can be configured.
+
+    // Note: Needs to be moved to a class function of it's own
     //desktopSettings = new QSettings("chipara", "desktop");
     //desktopSettings->beginGroup("desktop");
     //desktopSettings->endGroup();
 
-    //
+    // Variouse settings for the QDesktopViewWidget(QListWidget) class
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setViewMode(QListView::IconMode);
     setSpacing(20);
@@ -45,25 +59,20 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     setAutoScroll(true);
     setResizeMode(QListView::Adjust);
 
-    //setDragEnabled(true);
-    //this->viewport()->setAcceptDrops(true);
-    //setDropIndicatorShown(true);
-    //setDragDropMode(QAbstractItemView::InternalMove);
-
-    //
+    // The FreeDesktopMime class tells use what the mimetype of a file is and its mimetype icon
     QFreeDesktopMime mime;
 
-    //
+    // Location of the desktop
     QString desktop = QDesktopServices::storageLocation( QDesktopServices::DesktopLocation );
 
-    //
+    // Set current dir to the desktop location specified above
     QDir dir(desktop);
-    dir.setFilter(QDir::AllEntries | QDir::NoDotAndDotDot);
+    dir.setFilter(QDir::AllEntries | QDir::NoDotAndDotDot); // Show all files/directorys excepts . and ..
 
     //
     QFileInfoList list = dir.entryInfoList();
 
-    //
+    // Iterate over all the files found in the current dir
     for (int i = 0; i < list.size(); ++i)
     {
         QFileInfo fileInfo = list.at(i);
@@ -100,7 +109,7 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     menu->addAction(createLauncher);
     connect(createLauncher, SIGNAL(triggered()), this, SLOT(createLauncher()));
 
-    //
+    // Create submenu for Create Document
     QMenu *createDocMenu = menu->addMenu(tr("&Create Document"));
 
     // Create Launcher
@@ -109,10 +118,8 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     createDocMenu->addAction(createEmptyFile);
     connect(createEmptyFile, SIGNAL(triggered()), this, SLOT(createEmptyFile()));
 
-    //
+    // Add a separator to the menu
     menu->addSeparator();
-
-
 
 
     // Right Click Desktop Icon Menu
@@ -125,31 +132,28 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
 
 }
 
-//
+// Right Click Desktop Menu Create Folder Action
 void QDesktopViewWidget::createFolder()
 {
-
     qDebug() << "Create Folder Action Triggered";
 }
 
-//
+// Right Click Desktop Menu Create Launcher(.desktop) Action
 void QDesktopViewWidget::createLauncher()
 {
-
     qDebug() << "Create Launcher Action Triggered";
 }
 
-//
+// Right Click Desktop Menu Create Empty File(.txt) Action
 void QDesktopViewWidget::createEmptyFile()
 {
-
     qDebug() << "Create Empty File Action Triggered";
 }
 
-//
+// Right Click Mouse Events on the Desktop & Desktop Icon
 void QDesktopViewWidget::mousePressEvent(QMouseEvent *event)
 {
-    //
+    // Position of the Mouse Cursor when it receved the click event
     startPos = event->globalPos();
 
     //
@@ -158,6 +162,7 @@ void QDesktopViewWidget::mousePressEvent(QMouseEvent *event)
 
     //
     if (event->button() == Qt::RightButton)
+    {
         if (item == 0)
         {
             menu->exec(startPos);
@@ -166,11 +171,12 @@ void QDesktopViewWidget::mousePressEvent(QMouseEvent *event)
             iconMenu->exec(startPos);
             //qDebug() << "Icon Right Clicked" << "\n";
         }
+    }
 
     QListWidget::mousePressEvent(event); // Note: sure if this is needed
 }
 
-//
+// Left Click Mouse Events on the Desktop Icon
 void QDesktopViewWidget::iconClicked(QListWidgetItem* icon)
 {
     qDebug() << icon->text() << "\n";
