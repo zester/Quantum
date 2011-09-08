@@ -6,6 +6,7 @@ QDesktopViewItem::QDesktopViewItem(const QIcon &icon, const QString &text) :
 
 }
 
+
 QDesktopViewItem::~QDesktopViewItem()
 {
 }

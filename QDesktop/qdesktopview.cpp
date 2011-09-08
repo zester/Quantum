@@ -10,6 +10,7 @@
 #include <QDesktopServices>
 #include <QDesktopWidget>
 #include "freedesktopmime.h"
+#include <QProcess>
 
 
 // Note: the QDesktopViewWidget Class will become it's own widget
@@ -59,40 +60,7 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     setAutoScroll(true);
     setResizeMode(QListView::Adjust);
 
-    // The FreeDesktopMime class tells use what the mimetype of a file is and its mimetype icon
-    QFreeDesktopMime mime;
-
-    // Location of the desktop
-    QString desktop = QDesktopServices::storageLocation( QDesktopServices::DesktopLocation );
-
-    // Set current dir to the desktop location specified above
-    QDir dir(desktop);
-    dir.setFilter(QDir::AllEntries | QDir::NoDotAndDotDot); // Show all files/directorys excepts . and ..
-
-    //
-    QFileInfoList list = dir.entryInfoList();
-
-    // Iterate over all the files found in the current dir
-    for (int i = 0; i < list.size(); ++i)
-    {
-        QFileInfo fileInfo = list.at(i);
-        QString file = fileInfo.fileName();
-
-        // Parse avalable .desktop files
-        if (file.endsWith(".desktop", Qt::CaseInsensitive) == true) {
-            QSettings settings(dir.absoluteFilePath(fileInfo.fileName()), QSettings::IniFormat);
-            settings.beginGroup("Desktop Entry");
-            this->addItem(new QDesktopViewItem(QIcon::fromTheme(settings.value("Icon").toString()), \
-                                               settings.value("Name").toString()));
-
-            settings.endGroup();
-
-        // For files on the desktop that are not a .desktop file
-        }else{
-            this->addItem(new QDesktopViewItem(QIcon::fromTheme(mime.genericIconName(mime.fromFile(fileInfo.absoluteFilePath()))), \
-                                              fileInfo.fileName()));
-        }
-    }
+    populatedDesktop();
 
     // Right Click Desktop Menu
     menu = new QMenu(this);
@@ -128,9 +96,12 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     iconMenu->setStyleSheet("padding: 5px; width: 220px;");
     iconMenu->addAction(new QAction(QIcon::fromTheme("folder"), "Create Folder", this));
 
+    desktopDir = new QFileSystemWatcher;
+    desktopDir->addPath(QDesktopServices::storageLocation( QDesktopServices::DesktopLocation ));
+
     // Desktop Icon Double Click Event
     connect(this, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(iconClicked(QListWidgetItem*)));
-
+    connect(desktopDir, SIGNAL(directoryChanged(QString)), this, SLOT(populatedDesktop()));
 }
 
 // Right Click Desktop Menu Create Folder Action
@@ -149,6 +120,49 @@ void QDesktopViewWidget::createLauncher()
 void QDesktopViewWidget::createEmptyFile()
 {
     qDebug() << "Create Empty File Action Triggered";
+}
+
+void QDesktopViewWidget::populatedDesktop()
+{
+    this->clear();
+
+    // The FreeDesktopMime class tells use what the mimetype of a file is and its mimetype icon
+    QFreeDesktopMime mime;
+
+    // Location of the desktop
+    QString desktop = QDesktopServices::storageLocation( QDesktopServices::DesktopLocation );
+
+    // Set current dir to the desktop location specified above
+    QDir dir(desktop);
+    dir.setFilter(QDir::AllEntries | QDir::NoDotAndDotDot); // Show all files/directorys excepts . and ..
+
+    //
+    QFileInfoList list = dir.entryInfoList();
+
+    // Iterate over all the files found in the current dir
+    for (int i = 0; i < list.size(); ++i)
+    {
+        QFileInfo fileInfo = list.at(i);
+        QString file = fileInfo.fileName();
+
+        // Parse avalable .desktop files
+        if (file.endsWith(".desktop", Qt::CaseInsensitive) == true) {
+            QSettings settings(dir.absoluteFilePath(fileInfo.fileName()), QSettings::IniFormat);
+            settings.beginGroup("Desktop Entry");
+            QDesktopViewItem *icon;
+            this->addItem(icon = new QDesktopViewItem(QIcon::fromTheme(settings.value("Icon").toString()), \
+                                               settings.value("Name").toString()));
+            icon->setData(Qt::UserRole, QVariant(settings.value("Exec").toString()));
+
+            settings.endGroup();
+
+        // For files on the desktop that are not a .desktop file
+        }else{
+            this->addItem(new QDesktopViewItem(QIcon::fromTheme(mime.genericIconName(mime.fromFile(fileInfo.absoluteFilePath()))), \
+                                              fileInfo.fileName()));
+        }
+    }
+
 }
 
 // Right Click Mouse Events on the Desktop & Desktop Icon
@@ -180,5 +194,8 @@ void QDesktopViewWidget::mousePressEvent(QMouseEvent *event)
 // Left Click Mouse Events on the Desktop Icon
 void QDesktopViewWidget::iconClicked(QListWidgetItem* icon)
 {
-    qDebug() << icon->text() << "\n";
+    qDebug() << icon->data(Qt::UserRole).toString() << "\n";
+    QProcess commandLine;
+    commandLine.startDetached(icon->data(Qt::UserRole).toString());
+
 }

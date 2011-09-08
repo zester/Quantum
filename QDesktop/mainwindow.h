@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QSettings>
 #include "qdesktopview.h"
+#include <QFileSystemWatcher>
 
 namespace Ui {
     class MainWindow;
@@ -20,12 +21,15 @@ public:
 
     ~MainWindow();
 
+public slots:
+    void reloadWallpaper();
 
 private:
     Ui::MainWindow *ui;
     QDesktopViewWidget *desktopView;
     QPixmap wallpaper;
     QSettings *windowSettings;
+    QFileSystemWatcher *configFile;
 };
 
 #endif // MAINWINDOW_H
