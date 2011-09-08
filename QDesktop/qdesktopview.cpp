@@ -82,13 +82,14 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
         if (file.endsWith(".desktop", Qt::CaseInsensitive) == true) {
             QSettings settings(dir.absoluteFilePath(fileInfo.fileName()), QSettings::IniFormat);
             settings.beginGroup("Desktop Entry");
-            this->addItem(new QListWidgetItem(QIcon::fromTheme(settings.value("Icon").toString()), \
-                                                               settings.value("Name").toString()));
+            this->addItem(new QDesktopViewItem(QIcon::fromTheme(settings.value("Icon").toString()), \
+                                               settings.value("Name").toString()));
+
             settings.endGroup();
 
         // For files on the desktop that are not a .desktop file
         }else{
-            this->addItem(new QListWidgetItem(QIcon::fromTheme(mime.genericIconName(mime.fromFile(fileInfo.absoluteFilePath()))), \
+            this->addItem(new QDesktopViewItem(QIcon::fromTheme(mime.genericIconName(mime.fromFile(fileInfo.absoluteFilePath()))), \
                                               fileInfo.fileName()));
         }
     }

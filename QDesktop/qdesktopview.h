@@ -6,7 +6,7 @@
 #include <QMouseEvent>
 #include <QMenu>
 //#include <QSettings>
-
+#include "qdesktopviewitem.h"
 
 
 class QDesktopViewWidget : public QListWidget

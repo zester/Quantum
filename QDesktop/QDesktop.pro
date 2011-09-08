@@ -12,10 +12,12 @@ CONFIG += mobility
 MOBILITY += systeminfo
 
 # Input
-HEADERS += freedesktopmime.h mainwindow.h qdesktopview.h
+HEADERS += freedesktopmime.h mainwindow.h qdesktopview.h \
+    qdesktopviewitem.h
 
 FORMS += mainwindow.ui
 
-SOURCES += freedesktopmime.cpp main.cpp mainwindow.cpp qdesktopview.cpp
+SOURCES += freedesktopmime.cpp main.cpp mainwindow.cpp qdesktopview.cpp \
+    qdesktopviewitem.cpp
 
 RESOURCES += resource.qrc
