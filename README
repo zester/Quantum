@@ -16,6 +16,15 @@ and 5 rules of engagement.
 QDesktop is a application that gives you a Desktop Wallpaper, Icons, Right Click-Menus, Its simular
 to xfce4's Desktop Application but written in Qt4
 
+All software that you find here can be licensed under any GPL compatable license.
+http://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses
+
+So if you want to use QDesktop under a BSD or GPL3 licenses then
+that's fine.
+
+All that I ask is any contribution's made to this project does the
+same.
+
 Visit http://zester.github.com/Chipara/ for more info
 
 
