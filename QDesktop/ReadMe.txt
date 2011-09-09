@@ -1,3 +1,7 @@
+QDesktop is a application that gives you a Desktop Wallpaper, Icons, Right Click-Menus, Its simular
+to xfce4's Desktop Application but written in Qt4
+
+
 Create $HOME ./config/chipara/desktop.conf
 
 And Add
@@ -5,9 +9,3 @@ And Add
 [window]
 wallpaper=/home/steven/Picture/default.jpg
 
-
-Note: We still need to Subclass and reimplament QListWidgetItem
-and add a few aditional functions/varables.
-1. File Path
-2. File MimeType
-3. ...
