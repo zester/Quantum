@@ -48,6 +48,7 @@ void MainWindow::reloadWallpaper()
     windowSettings = new QSettings("chipara", "desktop");
     windowSettings->beginGroup("window");
     wallpaper.load(windowSettings->value("wallpaper").toString());
+    QIcon::setThemeName(windowSettings->value("iconTheme").toString());
     windowSettings->endGroup();
 
     wallpaper = wallpaper.scaled(QApplication::desktop()->size());

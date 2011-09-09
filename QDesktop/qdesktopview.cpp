@@ -64,7 +64,7 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
 
     // Right Click Desktop Menu
     menu = new QMenu(this);
-    menu->setStyleSheet("padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;");
+    //menu->setStyleSheet("padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;");
 
     // Create New Folder
     QAction *createFolder = new QAction(QIcon::fromTheme("folder"), tr("&Create Folder"), this);
@@ -152,7 +152,7 @@ void QDesktopViewWidget::populatedDesktop()
             QDesktopViewItem *icon;
             this->addItem(icon = new QDesktopViewItem(QIcon::fromTheme(settings.value("Icon").toString()), \
                                                settings.value("Name").toString()));
-            icon->setData(Qt::UserRole, QVariant(settings.value("Exec").toString()));
+            icon->setData(Qt::UserRole, QVariant(fileInfo.absoluteFilePath()));
 
             settings.endGroup();
 
@@ -196,6 +196,23 @@ void QDesktopViewWidget::iconClicked(QListWidgetItem* icon)
 {
     qDebug() << icon->data(Qt::UserRole).toString() << "\n";
     QProcess commandLine;
-    commandLine.startDetached(icon->data(Qt::UserRole).toString());
+
+
+    qDebug() << icon->data(Qt::UserRole).toString() << "\n";
+
+    QSettings settings(icon->data(Qt::UserRole).toString(), QSettings::IniFormat);
+    settings.beginGroup("Desktop Entry");
+        qDebug() << settings.value("Name").toString();
+        commandLine.startDetached(settings.value("Exec").toString());
+        qDebug() << settings.value("Exec").toString();
+        qDebug() << settings.value("Icon").toString();
+        qDebug() << settings.value("Type").toString();
+        // Defect cant git list
+
+        qDebug() << settings.value("Categories").toString();
+        qDebug() << settings.value("GenericName").toString();
+        qDebug() << settings.value("Terminal").toString();
+        qDebug() << settings.value("MimeType").toString();
+    settings.endGroup();
 
 }
