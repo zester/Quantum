@@ -10,7 +10,6 @@ private:
 
 public:
     explicit QDesktopViewItem(const QIcon & icon, const QString & text);
-
     ~QDesktopViewItem();
 
 

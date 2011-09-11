@@ -8,16 +8,17 @@ TARGET =
 DEPENDPATH += .
 INCLUDEPATH += .
 
-CONFIG += mobility
-MOBILITY += systeminfo
-
 # Input
 HEADERS += freedesktopmime.h mainwindow.h qdesktopview.h \
-    qdesktopviewitem.h
+    qdesktopviewitem.h \
+    qdesktopmenu.h \
+    qiconmenu.h
 
 FORMS += mainwindow.ui
 
 SOURCES += freedesktopmime.cpp main.cpp mainwindow.cpp qdesktopview.cpp \
-    qdesktopviewitem.cpp
+    qdesktopviewitem.cpp \
+    qdesktopmenu.cpp \
+    qiconmenu.cpp
 
 RESOURCES += resource.qrc

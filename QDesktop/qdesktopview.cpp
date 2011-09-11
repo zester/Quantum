@@ -11,6 +11,7 @@
 #include <QDesktopWidget>
 #include "freedesktopmime.h"
 #include <QProcess>
+#include <QActionGroup>
 
 
 // Note: the QDesktopViewWidget Class will become it's own widget
@@ -60,67 +61,25 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     setAutoScroll(true);
     setResizeMode(QListView::Adjust);
 
+    //
     populatedDesktop();
 
     // Right Click Desktop Menu
-    menu = new QMenu(this);
-    //menu->setStyleSheet("padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;");
-
-    // Create New Folder
-    QAction *createFolder = new QAction(QIcon::fromTheme("folder"), tr("&Create Folder"), this);
-    createFolder->setCheckable(false);
-    menu->addAction(createFolder);
-    connect(createFolder, SIGNAL(triggered()), this, SLOT(createFolder()));
-
-    // Create Launcher
-    QAction *createLauncher = new QAction(QIcon::fromTheme("folder"), tr("&Create Launcher ..."), this);
-    createLauncher->setCheckable(false);
-    menu->addAction(createLauncher);
-    connect(createLauncher, SIGNAL(triggered()), this, SLOT(createLauncher()));
-
-    // Create submenu for Create Document
-    QMenu *createDocMenu = menu->addMenu(tr("&Create Document"));
-
-    // Create Launcher
-    QAction *createEmptyFile = new QAction(QIcon::fromTheme("folder"), tr("&Empty File"), this);
-    createEmptyFile->setCheckable(false);
-    createDocMenu->addAction(createEmptyFile);
-    connect(createEmptyFile, SIGNAL(triggered()), this, SLOT(createEmptyFile()));
-
-    // Add a separator to the menu
-    menu->addSeparator();
-
+    menu = new QDesktopMenu(this);
 
     // Right Click Desktop Icon Menu
-    iconMenu = new QMenu(this);
-    iconMenu->setStyleSheet("padding: 5px; width: 220px;");
-    iconMenu->addAction(new QAction(QIcon::fromTheme("folder"), "Create Folder", this));
+    iconMenu = new QIconMenu(this);
 
+
+    //
     desktopDir = new QFileSystemWatcher;
-    desktopDir->addPath(QDesktopServices::storageLocation( QDesktopServices::DesktopLocation ));
+    desktopDir->addPath(QDesktopServices::storageLocation(QDesktopServices::DesktopLocation));
 
     // Desktop Icon Double Click Event
     connect(this, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(iconClicked(QListWidgetItem*)));
     connect(desktopDir, SIGNAL(directoryChanged(QString)), this, SLOT(populatedDesktop()));
 }
 
-// Right Click Desktop Menu Create Folder Action
-void QDesktopViewWidget::createFolder()
-{
-    qDebug() << "Create Folder Action Triggered";
-}
-
-// Right Click Desktop Menu Create Launcher(.desktop) Action
-void QDesktopViewWidget::createLauncher()
-{
-    qDebug() << "Create Launcher Action Triggered";
-}
-
-// Right Click Desktop Menu Create Empty File(.txt) Action
-void QDesktopViewWidget::createEmptyFile()
-{
-    qDebug() << "Create Empty File Action Triggered";
-}
 
 void QDesktopViewWidget::populatedDesktop()
 {

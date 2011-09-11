@@ -8,7 +8,8 @@
 //#include <QSettings>
 #include "qdesktopviewitem.h"
 #include <QFileSystemWatcher>
-
+#include "qdesktopmenu.h"
+#include "qiconmenu.h"
 
 class QDesktopViewWidget : public QListWidget
 {
@@ -21,15 +22,12 @@ public:
 
 public slots:
     void iconClicked(QListWidgetItem*);
-    void createFolder();
-    void createLauncher();
-    void createEmptyFile();
     void populatedDesktop();
 
 private:
     QPoint startPos;
-    QMenu *menu;
-    QMenu *iconMenu;
+    QDesktopMenu *menu;
+    QIconMenu *iconMenu;
     QFileSystemWatcher *desktopDir;
 
 signals:
