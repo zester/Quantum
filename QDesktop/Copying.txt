@@ -1,4 +1,3 @@
-/*
 Copyright (C) 2011 by Steven Starr
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -18,16 +17,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-*/
 
-#include <QtGui/QApplication>
-#include "mainwindow.h"
-
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-
-    return a.exec();
-}
