@@ -20,7 +20,8 @@ MainWindow::MainWindow(QWidget *parent) :
     setCentralWidget(desktopView);
 
     configFile = new QFileSystemWatcher;
-    configFile->addPath("/home/steven/.config/chipara/desktop.conf");
+    QString confPath = QString(getenv("QDESKTOP_CONFIG"));
+    configFile->addPath(confPath);
 
     connect(configFile, SIGNAL(fileChanged(QString)), this, SLOT(reloadWallpaper()));
 

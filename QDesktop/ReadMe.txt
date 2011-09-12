@@ -4,6 +4,8 @@ to xfce4's Desktop Application but written in Qt4
 
 Create $HOME ./config/chipara/desktop.conf
 
+export QDESKTOP_CONFIG=$HOME/.config/chipara/desktop.conf
+
 And Add
 
 [window]
