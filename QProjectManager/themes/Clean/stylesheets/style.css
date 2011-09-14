@@ -1,0 +1,77 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  padding: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #f1f1f1;
+}
+#header {
+  padding: 10px;
+  background-color: #333333;
+  overflow: auto;
+  border-bottom: 5px #6daa23 solid !important;
+  border-bottom-width: 5px;
+  border-bottom-color: #6daa23;
+  border-bottom-style: solid;
+}
+#logo {
+  width: 45px;
+  float: left;
+}
+#logo img {
+  width: 36px;
+  height: 36px;
+}
+#logoText {
+  color: #ffffff;
+  float: left;
+}
+#navBar {
+  float: right;
+}
+#navBar a {
+  color: #ffffff;
+  padding: 10px;
+  font-weight: bold;
+  text-decoration: none;
+}
+#navBar a:hover {
+  color: #6daa23;
+}
+#content {
+  overflow: auto;
+  padding: 20px;
+}
+#contentLeft {
+  float: left;
+}
+#contentRight {
+  float: right;
+}
+#search {
+  background-color: #e6e6e6;
+  border-radius: 2px;
+  border: 1px #c4c4c4 solid;
+  padding: 5px;
+}
+#search label {
+  color: #333333;
+  font-weight: bold;
+  margin-right: 20px;
+}
+#search input {
+  color: #000;
+  background-color: #fff;
+  height: 10px;
+  border: none;
+}
+#recentUpdates {
+  color: #333333;
+  background-color: #e6e6e6;
+  border-radius: 2px;
+  border: 1px #c4c4c4 solid;
+  padding: 5px;
+  margin-top: 20px;
+}

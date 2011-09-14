@@ -1,0 +1,6 @@
+!!!
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/Clean/stylesheets/style.css')
+  body!= body

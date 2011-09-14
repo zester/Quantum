@@ -1,0 +1,99 @@
+* {
+	padding: 0; 
+	margin: 0;
+}
+
+@background-color: #333;
+@color: #fff;
+@linkcolor-hover: #6daa23;
+@border-color: #6daa23;
+
+body {
+	padding: 0px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	background-color: #f1f1f1;
+}
+
+#header {
+	padding: 10px;
+	background-color: @background-color;
+	overflow: auto;
+	border-bottom: 5px @border-color solid !important;
+	border-bottom-width: 5px;
+	border-bottom-color: @border-color;
+	border-bottom-style: solid;
+}
+
+#logo {
+	width: 45px;
+	float: left;
+}
+
+#logo img {
+	width: 36px;
+	height: 36px;
+}
+
+#logoText {
+	color: @color;
+	float: left;
+	
+}
+
+#navBar{
+	float: right;
+}
+
+#navBar a{
+	color: @color;
+	padding: 10px;
+	font-weight: bold;
+	text-decoration:none;
+}
+
+#navBar a:hover{
+	color: @linkcolor-hover;
+}
+
+#content {
+	overflow: auto;
+	padding: 20px;
+}
+
+#contentLeft {
+	float: left;
+}
+
+#contentRight {
+	float: right;
+}
+
+#search {
+	background-color: #e6e6e6;
+	border-radius: 2px;
+	border: 1px #c4c4c4 solid;
+	padding: 5px;
+}
+
+#search label {
+	color: @background-color;
+	font-weight: bold;
+	margin-right: 20px;
+}
+
+#search input {
+	color: #000;
+	background-color: #fff;
+	height: 10px;
+	border: none;
+}
+
+#recentUpdates {
+	color: @background-color;
+	background-color: #e6e6e6;
+	border-radius: 2px;
+	border: 1px #c4c4c4 solid;
+	padding: 5px;
+	margin-top: 20px;
+}
+
