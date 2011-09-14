@@ -31,6 +31,12 @@ app.configure('production', function(){
 
 // Routes
 app.get('/', function(req, res){
+  res.render('login', {
+    title: 'QProjectManager'
+  });
+});
+
+app.get('/home', function(req, res){
   res.render('index', {
     title: 'QProjectManager'
   });

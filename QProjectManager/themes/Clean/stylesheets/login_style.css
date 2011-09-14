@@ -1,0 +1,21 @@
+#loginPanel {
+  position: relative;
+  top: 35%;
+  color: #ffffff;
+  height: 150px;
+  background-color: #333333;
+  overflow: auto;
+  border-bottom: 5px #6daa23 solid !important;
+  border-bottom-width: 5px;
+  border-bottom-color: #6daa23;
+  border-bottom-style: solid;
+  border-top: 5px #6daa23 solid !important;
+  border-top-width: 5px;
+  border-top-color: #6daa23;
+  border-top-style: solid;
+}
+#loginPanel img {
+  position: relative;
+  top: 17%;
+  padding-left: 50px;
+}
