@@ -19,7 +19,7 @@ private:
     QDomDocument *doc;
 
     QString mimeType;
-    QString mimeSummary;
+    QString mimeSummery;
     QString mimeDescription;
     QString mimeIcon;
     QString mimePattern;

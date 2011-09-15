@@ -3,7 +3,7 @@
 
 	<!-- Html File -->
 	<mime-type value="text/html">
-		<summary>Html Document</summary>
+		<summery>Html Document</summery>
     	<description>HyperText Markup Language Document</description>
 		<icon value="text-html"/>
     	<pattern value="html, htm"/>
@@ -12,7 +12,7 @@
 
 	<!-- Text File -->
 	<mime-type value="text/plain">
-		<summary>Text Document</summary>
+		<summery>Text Document</summery>
     	<description>Plain Text Document</description>
 		<icon value="text-x-generic"/>
     	<pattern value="txt"/>
@@ -21,7 +21,7 @@
 
 	<!-- PDF File -->
 	<mime-type value="application/pdf">
-		<summary>PDF Document</summary>
+		<summery>PDF Document</summery>
     	<description>Portable Document Format</description>
 		<icon value="application-pdf"/>
     	<pattern value="pdf"/>
@@ -30,7 +30,7 @@
 
 	<!-- Shell Script -->
 	<mime-type value="application/x-shellscript">
-		<summary>Shell Script</summary>
+		<summery>Shell Script</summery>
     	<description></description>
 		<icon value="text-x-script"/>
     	<pattern value="sh"/>

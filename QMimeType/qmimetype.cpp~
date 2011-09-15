@@ -29,7 +29,7 @@ void QMimeType::setByName(QString file)
 
             if (file.endsWith(pattern) == true) {
                 mimeType = mimetype.attribute("value");
-                mimeSummary = mimetype.firstChildElement("summary").text();
+                mimeSummery = mimetype.firstChildElement("summery").text();
                 mimeDescription = mimetype.firstChildElement("description").text();
                 mimeIcon = mimetype.firstChildElement("icon").attribute("value");
                 mimePattern = mimetype.firstChildElement("pattern").attribute("value");
@@ -46,9 +46,9 @@ QString QMimeType::type()
     return mimeType;
 }
 
-QString QMimeType::summary()
+QString QMimeType::summery()
 {
-    return mimeSummary;
+    return mimeSummery;
 }
 
 QString QMimeType::description()
