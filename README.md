@@ -13,8 +13,9 @@ and 5 rules of engagement.
    4.  Features
    5.  and KISS "Keep It Simple Sam!" :) 
 
-QDesktop is a application that gives you a Desktop Wallpaper, Icons, Right Click-Menus, Its simular
-to xfce4's Desktop Application but written in Qt4
+QDesktop is a application that gives you a Desktop Wallpaper, 
+Icons, Right Click-Menus, Its simular to xfce4's Desktop 
+Application but written in Qt4
 ![alt text](http://i52.tinypic.com/1ragja.png)
 
 Copyright (C) 2011 by Steven Starr
