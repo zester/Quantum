@@ -40,6 +40,4 @@ THE SOFTWARE.
 
 
 
-Visit http://zester.github.com/Chipara/ for more info
-
 
