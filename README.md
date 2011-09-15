@@ -1,4 +1,5 @@
 About The Chipara Project
+-------------------------
 
 The Chipara Project's aim is to create a complete uniformed Hybrid C++/JavaScript 
 Hardware, Software & Operating System Development Framework, a modular all in one 
