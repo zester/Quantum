@@ -5,14 +5,15 @@ Rectangle {
   height: 200
   color: "#00000000"
   radius: 0
+  rotation: 38
 
   Text {
-      x: 69
-      y: 158
+      x: 55
+      y: 165
       color: "#ffffff"
     text: "Todo List"
-    anchors.verticalCenterOffset: 70
-    anchors.horizontalCenterOffset: 4
+    anchors.verticalCenterOffset: 77
+    anchors.horizontalCenterOffset: -1
     smooth: true
     style: Text.Raised
     font.pointSize: 15
@@ -22,8 +23,8 @@ Rectangle {
 
   Image {
       id: image1
-      x: 34
-      y: 9
+      x: 29
+      y: 16
       width: 142
       height: 149
       smooth: true

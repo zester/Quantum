@@ -1,0 +1,50 @@
+/*
+For license information, see the COPYING file in the qconf base directory.
+
+QCM (QConf Module) Howto:
+
+ - Modules are Qt/C++ files that are compiled and run during configure time.
+ - Name your file "feature.qcm".
+ - Create a "BEGIN QCMOD" block like the one below, and specify a friendly
+   name for the feature.  This block should be placed in a C comment, so
+   that it does not disrupt the compiler.
+ - If you want arguments for this feature, then add extra lines to the
+   QCMOD block in the format: "arg: {name}(=[{value}]),description".  For
+   example:
+     arg: enable-foo,Enable the Foo feature
+     arg: with-foo-inc=[path],Path to Foo include files
+   These are set as environment variables, which your module can use
+   conf->getenv() to examine.
+ - Create a class like the one below, named qc_feature (yes, the same
+   word used in the filename), that inherits ConfObj.
+ - Derive name() to produce a friendly string.  This should probably be
+   identical to the string used in the QCMOD block.  It is this text
+   that is used when configure outputs "Checking for {name} ..."
+ - Derive shortname() to return "feature".
+ - You may also derive checkString() and resultString() if you want to
+   use different text than the usual "Checking for" and "yes/no" response.
+   For resultString(), you'll want to maintain the result of the last
+   call to exec(), so that you can output an appropriate string based on
+   the result.
+
+ Below you will find a sample module that simply checks for Qt >= 3.1
+
+-----BEGIN QCMOD-----
+name: Qt >= 3.1
+-----END QCMOD-----
+*/
+class qc_qt31 : public ConfObj
+{
+public:
+	qc_qt31(Conf *c) : ConfObj(c) {}
+	QString name() const { return "Qt >= 3.1"; }
+	QString shortname() const { return "qt31"; }
+	bool exec()
+	{
+		conf->debug(QString("QT_VERSION = %1").arg(QT_VERSION));
+		if(QT_VERSION >= 0x030100)
+			return true;
+		else
+			return false;
+	}
+};
