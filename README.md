@@ -18,8 +18,6 @@ Icons, Right Click-Menus, Its simular to xfce4's Desktop
 Application but written in Qt4
 ![alt text](http://i52.tinypic.com/1ragja.png) 
 
-QDesklets are desktop widgets
-![alt text](http://i53.tinypic.com/156u9t2.png)
 
 Copyright (C) 2011 by Steven Starr
 
