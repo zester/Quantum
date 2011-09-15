@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>ui.qml</file>
+        <file>images/logo.png</file>
+        <file>images/sticky-note.png</file>
     </qresource>
 </RCC>
