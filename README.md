@@ -1,7 +1,7 @@
-About The Chipara Project
+About The Quantum Project
 -------------------------
 
-The Chipara Project's aim is to create a complete uniformed Hybrid C++/JavaScript 
+The Quantum Project's aim is to create a complete uniformed Hybrid C++/JavaScript 
 Hardware, Software & Operating System Development Framework, a modular all in one 
 solution to building "System, Desktop, Web, Multimedia, and Game Applications. Doing 
 all of this and still keeping 4 key concepts in mind, "Design, Style, Construct, Deploy" 
