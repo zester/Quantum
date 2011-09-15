@@ -1,0 +1,94 @@
+/*
+ * Use %theme_path% to refer to the path of the theme.
+ */
+
+#title {
+    color: rgb(76,76,76);
+}
+
+#titlebar {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #DCD9D7, stop:0.50 #EBE9E8, stop:1 #DCD9D7);
+}
+
+
+
+#topBorder {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #DCD9D7, stop:0.50 #EBE9E8, stop:1 #DCD9D7);
+}
+#topLeftBorder {
+    background-color: #DCD9D7
+}
+#topRightBorder {
+    background-color: #DCD9D7
+}
+
+
+
+#bottomBorder {
+    background-color: #C7C1BE;
+}
+
+#bottomLeftBorder {
+    background-color: #C7C1BE;
+}
+
+#bottomRightBorder {
+    background-color: #C7C1BE;
+}
+
+
+
+#leftBorder {
+    background-color: qlineargradient(spread:pad,  x1:0, y1:0, x2:0, y2:1, stop:0 #DCD9D7, stop:1 #C7C1BE);
+}
+#leftTopBorder {
+    background-color: #DCD9D7;
+}
+#leftBottomBorder {
+    background-color: #C7C1BE;
+}
+
+
+
+
+#rightBorder {
+    background-color: qlineargradient(spread:pad,  x1:0, y1:0, x2:0, y2:1, stop:0 #DCD9D7, stop:1 #C7C1BE);
+}
+#rightTopBorder {
+    background-color: #DCD9D7;
+}
+#rightBottomBorder {
+    background-color: #C7C1BE;
+}
+
+/***************************************************************************/
+
+#minimizeButton {
+    border: none;
+    image: url(%theme_path%/images/minimize_button.png);
+}
+
+#minimizeButton:hover {
+    border: none;
+    image: url(%theme_path%/images/minimize_button_over.png);
+}
+
+#maximizeButton {
+    border: none;
+    image: url(%theme_path%/images/maximize_button.png);
+}
+
+#maximizeButton:hover {
+    border: none;
+    image: url(%theme_path%/images/maximize_button_over.png);
+}
+
+#exitButton {
+    border: none;
+    image: url(%theme_path%/images/exit_button.png);
+}
+
+#exitButton:hover {
+    border: none;
+    image: url(%theme_path%/images/exit_button_over.png);
+}

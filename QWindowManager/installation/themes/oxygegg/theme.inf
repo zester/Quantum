@@ -1,0 +1,32 @@
+[about]
+name=Oxygegg
+author=José Expósito
+copyright=GPL 3.0
+
+[theme]
+
+; Set to "true" if the window will display the icon in the title bar, otherwise set to "false".
+show_icon=false
+
+; Size of the window elements in pixels.
+; Negative values are invalid.
+titlebar_width=16
+top_border_width=4
+bottom_border_width=4
+left_border_width=4
+right_border_width=4
+icon_size=12
+
+; Position of the window buttons, the window icon and the window title.
+; Options: [left/right/center]:[Index 1..n]
+minimize_button_pos=left:1
+maximize_button_pos=left:2
+exit_button_pos=right:1
+icon_pos=center:1
+title_pos=center:2
+
+; Vertical align of icons
+; Options: [top/bottom/center]
+minimize_button_aling=center
+maximize_button_aling=center
+exit_button_aling=center

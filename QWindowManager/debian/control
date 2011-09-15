@@ -1,0 +1,19 @@
+Source: eggwm
+Section: unknown
+Priority: optional
+Maintainer: José Expósito <jose.exposito89@gmail.com>
+Build-Depends: debhelper (>= 7.0.50~)
+Standards-Version: 3.8.4
+Homepage: https://code.google.com/p/eggwm/
+
+Package: eggwm
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: EggWM is a window manager based on Qt 4 and Xlib.
+ There are many X11 window managers, each with different philosophies and it is
+ precisely this that differentiates EggWM the other window managers.
+ The EggWM objectives are:
+ - Maintain a simple and well documented source code.
+ - Being compatible with the freedesktop.org standards for window managers.
+ - Maintain a low consumption of resources without neglecting the usability and appearance.
+ - Allow to manage windows through gestures with Touchégg (https://code.google.com/p/touchegg/).

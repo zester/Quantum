@@ -1,0 +1,94 @@
+/*
+ * Use %theme_path% to refer to the path of the theme.
+ */
+
+#title {
+    color: rgb(76,76,76);
+}
+
+#titlebar {
+    background-color: #111111;
+}
+
+
+
+#topBorder {
+    background-color: #FFFF00;
+}
+#topLeftBorder {
+    background-color: #ff0000;
+}
+#topRightBorder {
+    background-color: #aa0000;
+}
+
+
+
+#bottomBorder {
+    background-color: #AAAA00;
+}
+
+#bottomLeftBorder {
+    background-color: #00FF00;
+}
+
+#bottomRightBorder {
+    background-color: #00AA00;
+}
+
+
+
+#leftBorder {
+    background-color: #AAAAAA;
+}
+#leftTopBorder {
+    background-color: #0000FF;
+}
+#leftBottomBorder {
+    background-color: #0000AA;
+}
+
+
+
+
+#rightBorder {
+    background-color: #444444;
+}
+#rightTopBorder {
+    background-color: #0000AA;
+}
+#rightBottomBorder {
+    background-color: #000011;
+}
+
+/***************************************************************************/
+
+#minimizeButton {
+    border: none;
+    image: url(%theme_path%/images/minimize_button.png);
+}
+
+#minimizeButton:hover {
+    border: none;
+    image: url(%theme_path%/images/minimize_button_over.png);
+}
+
+#maximizeButton {
+    border: none;
+    image: url(%theme_path%/images/maximize_button.png);
+}
+
+#maximizeButton:hover {
+    border: none;
+    image: url(%theme_path%/images/maximize_button_over.png);
+}
+
+#exitButton {
+    border: none;
+    image: url(%theme_path%/images/exit_button.png);
+}
+
+#exitButton:hover {
+    border: none;
+    image: url(%theme_path%/images/exit_button_over.png);
+}
