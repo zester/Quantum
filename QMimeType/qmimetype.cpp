@@ -7,7 +7,7 @@ QMimeType::QMimeType(QString mimeFile)
     file = new QFile(mimeFile);
     if(!file->open(QFile::ReadOnly | QFile::Text))
         qDebug() << "Can't open " << mimeFile;
-                    ;
+
     if(!doc->setContent(file)) {
         file->close();
         qDebug() << "Can't read the contents of " << mimeFile;
@@ -36,6 +36,7 @@ void QMimeType::setByName(QString file)
                 mimeApplication = mimetype.firstChildElement("application").attribute("value");
                 break;
             }
+
         }
         n = n.nextSibling();
     }
