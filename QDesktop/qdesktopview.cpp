@@ -87,7 +87,129 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     populatedDesktop();
 
     // Right Click Desktop Menu
-    menu = new QDesktopMenu(this);
+    menu = new QMenu(this);
+
+    // Create submenu for Create Document
+    QMenu *viewMenu = menu->addMenu(tr("&View"));
+    QActionGroup *viewGroup = new QActionGroup(this);
+
+    // Large Icons
+    QAction *extraLargeIcons = new QAction(QIcon::fromTheme("folder"), "X-Large Icons", this);
+    extraLargeIcons->setCheckable(true);
+    viewGroup->addAction(extraLargeIcons);
+    viewMenu->addAction(extraLargeIcons);
+    connect(extraLargeIcons, SIGNAL(triggered()), this, SLOT(setIconsExtraLarge()));
+
+    // Large Icons
+    QAction *largeIcons = new QAction(QIcon::fromTheme("folder"), "Large Icons", this);
+    largeIcons->setCheckable(true);
+    viewGroup->addAction(largeIcons);
+    viewMenu->addAction(largeIcons);
+    connect(largeIcons, SIGNAL(triggered()), this, SLOT(setIconsLarge()));
+
+    // Medium Icons
+    QAction *mediumIcons = new QAction(QIcon::fromTheme("folder"), "Medium Icons", this);
+    mediumIcons->setCheckable(true);
+    mediumIcons->setChecked(true);
+    viewGroup->addAction(mediumIcons);
+    viewMenu->addAction(mediumIcons);
+    connect(mediumIcons, SIGNAL(triggered()), this, SLOT(setIconsMedium()));
+
+    // Medium Icons
+    QAction *smallIcons = new QAction(QIcon::fromTheme("folder"), "Small Icons", this);
+    smallIcons->setCheckable(true);
+    viewGroup->addAction(smallIcons);
+    viewMenu->addAction(smallIcons);
+    connect(smallIcons, SIGNAL(triggered()), this, SLOT(setIconsSmall()));
+
+    // Add a separator to the menu
+    viewMenu->addSeparator();
+
+    // Sort By Size
+    QAction *showIcons = new QAction(QIcon::fromTheme("folder"), "Show Desktop Icons", this);
+    showIcons->setCheckable(true);
+    showIcons->setChecked(true);
+    viewMenu->addAction(showIcons);
+
+    // Create submenu for Create Document
+    QMenu *sortMenu = menu->addMenu(tr("&Sort By"));
+    QActionGroup *sortGroup = new QActionGroup(this);
+
+    // Sort By Name
+    QAction *nameSort = new QAction(QIcon::fromTheme("folder"), "Name", this);
+    nameSort->setCheckable(true);
+    nameSort->setChecked(true);
+    sortGroup->addAction(nameSort);
+    sortMenu->addAction(nameSort);
+
+    // Sort By Size
+    QAction *sizeSort = new QAction(QIcon::fromTheme("folder"), "Size", this);
+    sizeSort->setCheckable(true);
+    sortGroup->addAction(sizeSort);
+    sortMenu->addAction(sizeSort);
+
+    // Sort By Size
+    QAction *typeSort = new QAction(QIcon::fromTheme("folder"), "Item Type", this);
+    typeSort->setCheckable(true);
+    sortGroup->addAction(typeSort);
+    sortMenu->addAction(typeSort);
+
+    // Sort By Size
+    QAction *dateSort = new QAction(QIcon::fromTheme("folder"), "Date Modified", this);
+    dateSort->setCheckable(true);
+    sortGroup->addAction(dateSort);
+    sortMenu->addAction(dateSort);
+
+    // Refresh
+    QAction *refresh = new QAction(QIcon::fromTheme("folder"), "Refresh", this);
+    menu->addAction(refresh);
+
+    // Add a separator to the menu
+    menu->addSeparator();
+
+    // Paste
+    QAction *paste = new QAction(QIcon::fromTheme("folder"), "Paste", this);
+    paste->setEnabled(false);
+    menu->addAction(paste);
+
+    // Paste Shortcut
+    QAction *pasteShortCut = new QAction(QIcon::fromTheme("folder"), "Paste Shortcut", this);
+    pasteShortCut->setEnabled(false);
+    menu->addAction(pasteShortCut);
+
+    // Add a separator to the menu
+    menu->addSeparator();
+
+    // New Menu
+    QMenu *create = menu->addMenu(tr("&New"));
+
+    // Create Folder
+    QAction *createFolder = new QAction(QIcon::fromTheme("folder"), tr("&Folder"), this);
+    create->addAction(createFolder);
+    createFolder->setIconVisibleInMenu(true);
+    connect(createFolder, SIGNAL(triggered()), this, SLOT(createFolder()));
+
+    // Create Launcher
+    QAction *createLauncher = new QAction(QIcon::fromTheme("application-x-desktop"), tr("&Launcher"), this);
+    create->addAction(createLauncher);
+    createLauncher->setIconVisibleInMenu(true);
+    connect(createLauncher, SIGNAL(triggered()), this, SLOT(createLauncher()));
+
+    // Create Empty File
+    QAction *createEmptyFile = new QAction(QIcon::fromTheme("text-plain"), tr("&Empty File"), this);
+    create->addAction(createEmptyFile);
+    createEmptyFile->setIconVisibleInMenu(true);
+    connect(createEmptyFile, SIGNAL(triggered()), this, SLOT(createEmptyFile()));
+
+    // Add a separator to the menu
+    menu->addSeparator();
+
+    // Paste
+    QAction *desktopSettings = new QAction(QIcon::fromTheme("preferences-desktop"), "Desktop Settings", this);
+    desktopSettings->setIconVisibleInMenu(true);
+    menu->addAction(desktopSettings);
+
+
 
     // Right Click Desktop Icon Menu
     iconMenu = new QIconMenu(this);
@@ -196,4 +318,54 @@ void QDesktopViewWidget::iconClicked(QListWidgetItem* icon)
         qDebug() << settings.value("MimeType").toString();
     settings.endGroup();
 
+}
+
+// Set Desktop Icons to Large
+void QDesktopViewWidget::setIconsExtraLarge()
+{
+    qDebug() << "setIconsLarge";
+    this->setIconSize(QSize(128, 128));
+    this->populatedDesktop();
+}
+
+// Set Desktop Icons to Large
+void QDesktopViewWidget::setIconsLarge()
+{
+    qDebug() << "setIconsLarge";
+    this->setIconSize(QSize(64, 64));
+    this->populatedDesktop();
+}
+
+// Set Desktop Icons to Large
+void QDesktopViewWidget::setIconsMedium()
+{
+    qDebug() << "setIconsMedium";
+    this->setIconSize(QSize(48, 48));
+    this->populatedDesktop();
+}
+
+// Set Desktop Icons to Large
+void QDesktopViewWidget::setIconsSmall()
+{
+    qDebug() << "setIconsSmall";
+    this->setIconSize(QSize(36, 36));
+    this->populatedDesktop();
+}
+
+// Right Click Desktop Menu Create Folder Action
+void QDesktopViewWidget::createFolder()
+{
+    qDebug() << "Create Folder Action Triggered";
+}
+
+// Right Click Desktop Menu Create Launcher(.desktop) Action
+void QDesktopViewWidget::createLauncher()
+{
+    qDebug() << "Create Launcher Action Triggered";
+}
+
+// Right Click Desktop Menu Create Empty File(.txt) Action
+void QDesktopViewWidget::createEmptyFile()
+{
+    qDebug() << "Create Empty File Action Triggered";
 }

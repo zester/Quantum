@@ -30,7 +30,6 @@ THE SOFTWARE.
 //#include <QSettings>
 #include "qdesktopviewitem.h"
 #include <QFileSystemWatcher>
-#include "qdesktopmenu.h"
 #include "qiconmenu.h"
 
 class QDesktopViewWidget : public QListWidget
@@ -45,11 +44,18 @@ public:
 public slots:
     void iconClicked(QListWidgetItem*);
     void populatedDesktop();
+    void setIconsSmall();
+    void setIconsMedium();
+    void setIconsLarge();
+    void setIconsExtraLarge();
+    void createFolder();
+    void createLauncher();
+    void createEmptyFile();
 
 private:
     QPoint startPos;
-    QDesktopMenu *menu;
     QIconMenu *iconMenu;
+    QMenu *menu;
     QFileSystemWatcher *desktopDir;
 
 signals:
