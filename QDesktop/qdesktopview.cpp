@@ -255,6 +255,8 @@ void QDesktopViewWidget::populatedDesktop()
             QDesktopViewItem *icon;
             this->addItem(icon = new QDesktopViewItem(QIcon::fromTheme(settings.value("Icon").toString()), \
                                                settings.value("Name").toString()));
+
+            // !!!Important: setData value = the icon's file path
             icon->setData(Qt::UserRole, QVariant(fileInfo.absoluteFilePath()));
 
             settings.endGroup();
@@ -287,6 +289,7 @@ void QDesktopViewWidget::mousePressEvent(QMouseEvent *event)
             //qDebug() << "Desktop Right Clicked" << "\n";
         } else {
             iconMenu->exec(startPos);
+            qDebug() << item->data(Qt::UserRole).toString() << "\n";
             //qDebug() << "Icon Right Clicked" << "\n";
         }
     }
@@ -323,33 +326,25 @@ void QDesktopViewWidget::iconClicked(QListWidgetItem* icon)
 // Set Desktop Icons to Large
 void QDesktopViewWidget::setIconsExtraLarge()
 {
-    qDebug() << "setIconsLarge";
     this->setIconSize(QSize(128, 128));
-    this->populatedDesktop();
 }
 
 // Set Desktop Icons to Large
 void QDesktopViewWidget::setIconsLarge()
 {
-    qDebug() << "setIconsLarge";
     this->setIconSize(QSize(64, 64));
-    this->populatedDesktop();
 }
 
 // Set Desktop Icons to Large
 void QDesktopViewWidget::setIconsMedium()
 {
-    qDebug() << "setIconsMedium";
     this->setIconSize(QSize(48, 48));
-    this->populatedDesktop();
 }
 
 // Set Desktop Icons to Large
 void QDesktopViewWidget::setIconsSmall()
 {
-    qDebug() << "setIconsSmall";
     this->setIconSize(QSize(36, 36));
-    this->populatedDesktop();
 }
 
 // Right Click Desktop Menu Create Folder Action
