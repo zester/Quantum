@@ -35,6 +35,9 @@ public:
 signals:
 
 public slots:
+    void setIconsSmall();
+    void setIconsMedium();
+    void setIconsLarge();
     void createFolder();
     void createLauncher();
     void createEmptyFile();
