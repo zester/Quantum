@@ -70,7 +70,6 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     setMovement(QListView::Snap);
     setIconSize(QSize(48, 48));
     setUniformItemSizes(true);
-    //setWordWrap(true);
     setWrapping(true);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
