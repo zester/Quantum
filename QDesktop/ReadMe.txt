@@ -11,5 +11,4 @@ And Add
 [window]
 wallpaper=/home/steven/Picture/default.jpg
 iconTheme=Faenza
-
-
+showIcons=1

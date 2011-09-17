@@ -83,9 +83,6 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     setAutoScroll(true);
     setResizeMode(QListView::Adjust);
 
-    //
-    populatedDesktop();
-
     // Right Click Desktop Menu
     menu = new QMenu(this);
 
@@ -126,10 +123,11 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     viewMenu->addSeparator();
 
     // Sort By Size
-    QAction *showIcons = new QAction(QIcon::fromTheme("folder"), "Show Desktop Icons", this);
+    showIcons = new QAction(QIcon::fromTheme("folder"), "Show Desktop Icons", this);
     showIcons->setCheckable(true);
     showIcons->setChecked(true);
     viewMenu->addAction(showIcons);
+    connect(showIcons, SIGNAL(triggered()), this, SLOT(showDesktopIcons()));
 
     // Create submenu for Create Document
     QMenu *sortMenu = menu->addMenu(tr("&Sort By"));
@@ -209,15 +207,24 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     desktopSettings->setIconVisibleInMenu(true);
     menu->addAction(desktopSettings);
 
-
-
     // Right Click Desktop Icon Menu
     iconMenu = new QIconMenu(this);
-
 
     //
     desktopDir = new QFileSystemWatcher;
     desktopDir->addPath(QDesktopServices::storageLocation(QDesktopServices::DesktopLocation));
+
+    //
+    dSettings = new QSettings("chipara", "desktop");
+    dSettings->beginGroup("window");
+
+    if (dSettings->value("showIcons") == 1) {
+        showIcons->setChecked(true);
+        populatedDesktop();
+    } else {
+        showIcons->setChecked(false);
+    }
+    dSettings->endGroup();
 
     // Desktop Icon Double Click Event
     connect(this, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(iconClicked(QListWidgetItem*)));
@@ -363,4 +370,22 @@ void QDesktopViewWidget::createLauncher()
 void QDesktopViewWidget::createEmptyFile()
 {
     qDebug() << "Create Empty File Action Triggered";
+}
+
+// Right Click Desktop Menu Create Empty File(.txt) Action
+void QDesktopViewWidget::showDesktopIcons()
+{
+
+    dSettings = new QSettings("chipara", "desktop");
+    dSettings->beginGroup("window");
+
+    if (showIcons->isChecked() == true) {
+        dSettings->setValue("showIcons", 1);
+        populatedDesktop();
+    } else {
+        dSettings->setValue("showIcons", 0);
+        this->clear();
+    }
+
+    dSettings->endGroup();
 }

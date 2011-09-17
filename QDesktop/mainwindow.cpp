@@ -42,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
     desktopView = new QDesktopViewWidget;
     setCentralWidget(desktopView);
 
+
     // Watch .config/chipara/desktop.conf for changes
     configFile = new QFileSystemWatcher;
     QString confPath = QString(getenv("QDESKTOP_CONFIG"));

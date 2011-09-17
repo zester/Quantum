@@ -27,7 +27,7 @@ THE SOFTWARE.
 #include <QListWidgetItem>
 #include <QMouseEvent>
 #include <QMenu>
-//#include <QSettings>
+#include <QSettings>
 #include "qdesktopviewitem.h"
 #include <QFileSystemWatcher>
 #include "qiconmenu.h"
@@ -51,12 +51,15 @@ public slots:
     void createFolder();
     void createLauncher();
     void createEmptyFile();
+    void showDesktopIcons();
 
 private:
     QPoint startPos;
     QIconMenu *iconMenu;
     QMenu *menu;
     QFileSystemWatcher *desktopDir;
+    QAction *showIcons;
+    QSettings *dSettings;
 
 signals:
 
