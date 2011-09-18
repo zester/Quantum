@@ -10,5 +10,8 @@ And Add
 
 [window]
 wallpaper=/home/steven/Picture/default.jpg
-iconTheme=Faenza
+iconTheme=oxygen
+iconSize=2
 showIcons=1
+layoutDirection=1
+desktopSettings=/home/steven/Desktop/Quantum/QDesktopSettings/QDesktopSettings
