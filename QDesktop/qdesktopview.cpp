@@ -34,7 +34,7 @@ THE SOFTWARE.
 #include "freedesktopmime.h"
 #include <QProcess>
 #include <QActionGroup>
-
+#include <mntent.h>
 
 // Note: the QDesktopViewWidget Class will become it's own widget
 // so others can easly create there own desktopsor file managers with
@@ -91,33 +91,51 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     QActionGroup *viewGroup = new QActionGroup(this);
 
     // Large Icons
-    QAction *extraLargeIcons = new QAction(QIcon::fromTheme("folder"), "X-Large Icons", this);
+    extraLargeIcons = new QAction(QIcon::fromTheme("folder"), "X-Large Icons", this);
     extraLargeIcons->setCheckable(true);
     viewGroup->addAction(extraLargeIcons);
     viewMenu->addAction(extraLargeIcons);
-    connect(extraLargeIcons, SIGNAL(triggered()), this, SLOT(setIconsExtraLarge()));
+    connect(extraLargeIcons, SIGNAL(triggered()), this, SLOT(resizeIcons()));
 
     // Large Icons
-    QAction *largeIcons = new QAction(QIcon::fromTheme("folder"), "Large Icons", this);
+    largeIcons = new QAction(QIcon::fromTheme("folder"), "Large Icons", this);
     largeIcons->setCheckable(true);
     viewGroup->addAction(largeIcons);
     viewMenu->addAction(largeIcons);
-    connect(largeIcons, SIGNAL(triggered()), this, SLOT(setIconsLarge()));
+    connect(largeIcons, SIGNAL(triggered()), this, SLOT(resizeIcons()));
 
     // Medium Icons
-    QAction *mediumIcons = new QAction(QIcon::fromTheme("folder"), "Medium Icons", this);
+    mediumIcons = new QAction(QIcon::fromTheme("folder"), "Medium Icons", this);
     mediumIcons->setCheckable(true);
     mediumIcons->setChecked(true);
     viewGroup->addAction(mediumIcons);
     viewMenu->addAction(mediumIcons);
-    connect(mediumIcons, SIGNAL(triggered()), this, SLOT(setIconsMedium()));
+    connect(mediumIcons, SIGNAL(triggered()), this, SLOT(resizeIcons()));
 
     // Medium Icons
-    QAction *smallIcons = new QAction(QIcon::fromTheme("folder"), "Small Icons", this);
+    smallIcons = new QAction(QIcon::fromTheme("folder"), "Small Icons", this);
     smallIcons->setCheckable(true);
     viewGroup->addAction(smallIcons);
     viewMenu->addAction(smallIcons);
-    connect(smallIcons, SIGNAL(triggered()), this, SLOT(setIconsSmall()));
+    connect(smallIcons, SIGNAL(triggered()), this, SLOT(resizeIcons()));
+
+    // Add a separator to the menu
+    viewMenu->addSeparator();
+
+    QActionGroup *layoutGroup = new QActionGroup(this);
+    // Medium Icons
+    leftToRight = new QAction(QIcon::fromTheme("folder"), "Left To Right", this);
+    leftToRight->setCheckable(true);
+    layoutGroup->addAction(leftToRight);
+    viewMenu->addAction(leftToRight);
+    connect(leftToRight, SIGNAL(triggered()), this, SLOT(layoutDirection()));
+
+    // Medium Icons
+    rightToLeft = new QAction(QIcon::fromTheme("folder"), "Right To Left", this);
+    rightToLeft->setCheckable(true);
+    layoutGroup->addAction(rightToLeft);
+    viewMenu->addAction(rightToLeft);
+    connect(rightToLeft, SIGNAL(triggered()), this, SLOT(layoutDirection()));
 
     // Add a separator to the menu
     viewMenu->addSeparator();
@@ -143,18 +161,21 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     // Sort By Size
     QAction *sizeSort = new QAction(QIcon::fromTheme("folder"), "Size", this);
     sizeSort->setCheckable(true);
+    sizeSort->setDisabled(true);
     sortGroup->addAction(sizeSort);
     sortMenu->addAction(sizeSort);
 
     // Sort By Size
     QAction *typeSort = new QAction(QIcon::fromTheme("folder"), "Item Type", this);
     typeSort->setCheckable(true);
+    typeSort->setDisabled(true);
     sortGroup->addAction(typeSort);
     sortMenu->addAction(typeSort);
 
     // Sort By Size
     QAction *dateSort = new QAction(QIcon::fromTheme("folder"), "Date Modified", this);
     dateSort->setCheckable(true);
+    dateSort->setDisabled(true);
     sortGroup->addAction(dateSort);
     sortMenu->addAction(dateSort);
 
@@ -206,6 +227,7 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
     QAction *desktopSettings = new QAction(QIcon::fromTheme("preferences-desktop"), "Desktop Settings", this);
     desktopSettings->setIconVisibleInMenu(true);
     menu->addAction(desktopSettings);
+    connect(desktopSettings, SIGNAL(triggered()), this, SLOT(execDesktopSettings()));
 
     // Right Click Desktop Icon Menu
     iconMenu = new QIconMenu(this);
@@ -220,13 +242,40 @@ QDesktopViewWidget::QDesktopViewWidget(QWidget *parent) :
 
     if (dSettings->value("showIcons") == 1) {
         showIcons->setChecked(true);
-        populatedDesktop();
     } else {
         showIcons->setChecked(false);
     }
+
+    //
+    if (dSettings->value("layoutDirection") == 1) {
+        setLayoutDirection(Qt::LeftToRight);
+        leftToRight->setChecked(true);
+    } else {
+        setLayoutDirection(Qt::RightToLeft);
+        rightToLeft->setChecked(true);
+    }
+
+    //
+    if (dSettings->value("iconSize") == 1) {
+        this->setIconSize(QSize(128, 128));
+        extraLargeIcons->setChecked(true);
+    } else if (dSettings->value("iconSize") == 2) {
+        this->setIconSize(QSize(64, 64));
+        largeIcons->setChecked(true);
+    } else if (dSettings->value("iconSize") == 3) {
+        this->setIconSize(QSize(48, 48));
+        mediumIcons->setChecked(true);
+    } else if (dSettings->value("iconSize") == 4) {
+        this->setIconSize(QSize(36, 36));
+        smallIcons->setChecked(true);
+    }
+
+
+    populatedDesktop();
+
     dSettings->endGroup();
 
-    // Desktop Icon Double Click Event
+    // Desktop Icon Double Click EventexecDesktopSettings
     connect(this, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(iconClicked(QListWidgetItem*)));
     connect(desktopDir, SIGNAL(directoryChanged(QString)), this, SLOT(populatedDesktop()));
 }
@@ -330,29 +379,46 @@ void QDesktopViewWidget::iconClicked(QListWidgetItem* icon)
 
 }
 
-// Set Desktop Icons to Large
-void QDesktopViewWidget::setIconsExtraLarge()
+//
+void QDesktopViewWidget::resizeIcons()
 {
-    this->setIconSize(QSize(128, 128));
+    dSettings = new QSettings("chipara", "desktop");
+    dSettings->beginGroup("window");
+
+    if (extraLargeIcons->isChecked() == true) {
+        dSettings->setValue("iconSize", 1);
+        this->setIconSize(QSize(128, 128));
+    } else if (largeIcons->isChecked() == true) {
+        dSettings->setValue("iconSize", 2);
+        this->setIconSize(QSize(64, 64));
+    } else if (mediumIcons->isChecked() == true) {
+        dSettings->setValue("iconSize", 3);
+        this->setIconSize(QSize(48, 48));
+    } else if (smallIcons->isChecked() == true) {
+        dSettings->setValue("iconSize", 4);
+        this->setIconSize(QSize(36, 36));
+    }
+
+    dSettings->endGroup();
 }
 
-// Set Desktop Icons to Large
-void QDesktopViewWidget::setIconsLarge()
+//
+void QDesktopViewWidget::layoutDirection()
 {
-    this->setIconSize(QSize(64, 64));
+    dSettings = new QSettings("chipara", "desktop");
+    dSettings->beginGroup("window");
+
+    if (leftToRight->isChecked() == true) {
+        dSettings->setValue("layoutDirection", 1);
+        this->setLayoutDirection(Qt::LeftToRight);
+    } else {
+        dSettings->setValue("layoutDirection", 2);
+        this->setLayoutDirection(Qt::RightToLeft);
+    }
+
+    dSettings->endGroup();
 }
 
-// Set Desktop Icons to Large
-void QDesktopViewWidget::setIconsMedium()
-{
-    this->setIconSize(QSize(48, 48));
-}
-
-// Set Desktop Icons to Large
-void QDesktopViewWidget::setIconsSmall()
-{
-    this->setIconSize(QSize(36, 36));
-}
 
 // Right Click Desktop Menu Create Folder Action
 void QDesktopViewWidget::createFolder()
@@ -387,5 +453,14 @@ void QDesktopViewWidget::showDesktopIcons()
         this->clear();
     }
 
+    dSettings->endGroup();
+}
+
+void QDesktopViewWidget::execDesktopSettings()
+{
+    QProcess commandLine;
+    dSettings = new QSettings("chipara", "desktop");
+    dSettings->beginGroup("window");
+    commandLine.startDetached(dSettings->value("desktopSettings").toString());
     dSettings->endGroup();
 }

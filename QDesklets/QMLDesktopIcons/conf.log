@@ -1,0 +1,5 @@
+/usr/bin/moc -DHAVE_MODULES -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt/mkspecs/linux-g++-64 -I. -I/usr/include/QtCore -I/usr/include -I. conf4.cpp -o conf4.moc
+g++ -c -m64 -pipe -march=x86-64 -mtune=generic -O2 -pipe -fno-strict-aliasing -Wall -W -D_REENTRANT -DHAVE_MODULES -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt/mkspecs/linux-g++-64 -I. -I/usr/include/QtCore -I/usr/include -I. -o conf4.o conf4.cpp
+conf4.cpp: In function ‘int main()’:
+conf4.cpp:709:11: warning: variable ‘o’ set but not used [-Wunused-but-set-variable]
+g++ -m64 -Wl,--hash-style=gnu -Wl,--as-needed -Wl,-O1 -o conf conf4.o    -L/usr/lib -lQtCore -lpthread 

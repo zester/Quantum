@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>ui.qml</file>
+        <file>images/folder-black.png</file>
+    </qresource>
+</RCC>

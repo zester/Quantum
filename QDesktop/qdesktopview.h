@@ -43,23 +43,29 @@ public:
 
 public slots:
     void iconClicked(QListWidgetItem*);
+    void layoutDirection();
     void populatedDesktop();
-    void setIconsSmall();
-    void setIconsMedium();
-    void setIconsLarge();
-    void setIconsExtraLarge();
+    void resizeIcons();
     void createFolder();
     void createLauncher();
     void createEmptyFile();
     void showDesktopIcons();
+    void execDesktopSettings();
 
 private:
     QPoint startPos;
     QIconMenu *iconMenu;
     QMenu *menu;
     QFileSystemWatcher *desktopDir;
+    QFileSystemWatcher *mtabFile;
     QAction *showIcons;
     QSettings *dSettings;
+    QAction *leftToRight;
+    QAction *rightToLeft;
+    QAction *extraLargeIcons;
+    QAction *largeIcons;
+    QAction *mediumIcons;
+    QAction *smallIcons;
 
 signals:
 
