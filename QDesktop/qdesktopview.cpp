@@ -34,7 +34,6 @@ THE SOFTWARE.
 #include "freedesktopmime.h"
 #include <QProcess>
 #include <QActionGroup>
-#include <mntent.h>
 
 // Note: the QDesktopViewWidget Class will become it's own widget
 // so others can easly create there own desktopsor file managers with
