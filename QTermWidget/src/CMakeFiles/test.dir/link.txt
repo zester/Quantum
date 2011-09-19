@@ -1,0 +1,1 @@
+/usr/bin/c++   -O2 -g    CMakeFiles/test.dir/main.o  -o test -rdynamic -L/home/steven/Desktop/Quantum/QTermWidget/src/.. -lQtGui -lQtCore -lutil -lqtermwidget -lutil -lqtermwidget -Wl,-rpath,/home/steven/Desktop/Quantum/QTermWidget/src/.. 

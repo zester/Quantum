@@ -57,7 +57,7 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::resizeEvent(QResizeEvent *event) // Note: Function argument needs to be made void?
 {
     // Scale wallpaper to desktop
-    wallpaper = wallpaper.scaled(QApplication::desktop()->size());
+    wallpaper = wallpaper.scaled(QApplication::desktop()->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
 }
 
 // Application paint event

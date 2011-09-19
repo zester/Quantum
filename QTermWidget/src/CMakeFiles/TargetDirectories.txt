@@ -1,0 +1,1 @@
+/home/steven/Desktop/Quantum/QTermWidget/src/CMakeFiles/test.dir
