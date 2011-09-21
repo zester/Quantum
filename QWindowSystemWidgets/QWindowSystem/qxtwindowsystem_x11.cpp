@@ -1,33 +1,4 @@
 #include "qxtwindowsystem.h"
-/****************************************************************************
-** Copyright (c) 2006 - 2011, the LibQxt project.
-** See the Qxt AUTHORS file for a list of authors and copyright holders.
-** All rights reserved.
-**
-** Redistribution and use in source and binary forms, with or without
-** modification, are permitted provided that the following conditions are met:
-**     * Redistributions of source code must retain the above copyright
-**       notice, this list of conditions and the following disclaimer.
-**     * Redistributions in binary form must reproduce the above copyright
-**       notice, this list of conditions and the following disclaimer in the
-**       documentation and/or other materials provided with the distribution.
-**     * Neither the name of the LibQxt project nor the
-**       names of its contributors may be used to endorse or promote products
-**       derived from this software without specific prior written permission.
-**
-** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-** ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-** WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-** DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
-** DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-** (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-** LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-** ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-** SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-**
-** <http://libqxt.org>  <foundation@libqxt.org>
-*****************************************************************************/
 
 #include <QLibrary>
 #include <QX11Info>
@@ -54,7 +25,7 @@ static WindowList qxt_getWindows(Atom prop)
     return res;
 }
 
-WindowList QxtWindowSystem::windows()
+WindowList QWindowSystem::windows()
 {
     static Atom net_clients = 0;
     if (!net_clients)
@@ -63,7 +34,7 @@ WindowList QxtWindowSystem::windows()
     return qxt_getWindows(net_clients);
 }
 
-WId QxtWindowSystem::activeWindow()
+WId QWindowSystem::activeWindow()
 {
     static Atom net_active = 0;
     if (!net_active)
@@ -72,7 +43,7 @@ WId QxtWindowSystem::activeWindow()
     return qxt_getWindows(net_active).value(0);
 }
 
-WId QxtWindowSystem::findWindow(const QString& title)
+WId QWindowSystem::findWindow(const QString& title)
 {
     Window result = 0;
     WindowList list = windows();
@@ -87,7 +58,7 @@ WId QxtWindowSystem::findWindow(const QString& title)
     return result;
 }
 
-WId QxtWindowSystem::windowAt(const QPoint& pos)
+WId QWindowSystem::windowAt(const QPoint& pos)
 {
     Window result = 0;
     WindowList list = windows();
@@ -103,7 +74,7 @@ WId QxtWindowSystem::windowAt(const QPoint& pos)
     return result;
 }
 
-QString QxtWindowSystem::windowTitle(WId window)
+QString QWindowSystem::windowTitle(WId window)
 {
     QString name;
     char* str = 0;
@@ -114,7 +85,7 @@ QString QxtWindowSystem::windowTitle(WId window)
     return name;
 }
 
-QRect QxtWindowSystem::windowGeometry(WId window)
+QRect QWindowSystem::windowGeometry(WId window)
 {
     int x, y;
     uint width, height, border, depth;
@@ -162,7 +133,7 @@ typedef Status (*XScreenSaverQueryInfo)(Display* display, Drawable* drawable, XS
 static XScreenSaverAllocInfo _xScreenSaverAllocInfo = 0;
 static XScreenSaverQueryInfo _xScreenSaverQueryInfo = 0;
 
-uint QxtWindowSystem::idleTime()
+uint QWindowSystem::idleTime()
 {
     static bool xssResolved = false;
     if (!xssResolved) {
