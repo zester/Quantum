@@ -1,5 +1,5 @@
-About The Quantum Project
--------------------------
+About The Project
+-----------------
 
 The Quantum Project's aim is to create a complete uniformed Hybrid C++/JavaScript 
 Hardware, Software & Operating System Development Framework, a modular all in one 
